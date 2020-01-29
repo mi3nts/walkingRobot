@@ -6,7 +6,7 @@ import serial
 import datetime
 import os
 import csv
-import deepdish as dd
+#import deepdish as dd
 import time
 import json
 
