@@ -1,8 +1,9 @@
-#include "Arduino.h"
-// #include "Seeed_BME280.h"
-// #include "MutichannelGasSensor.h"
 
-//  Light Sensors
+#include <Arduino.h>
+
+#include <Wire.h>
+
+
 #include "SI114X.h"
 #include "TMG39931Mints.h"
 
@@ -13,12 +14,8 @@
 #include "Adafruit_TSL2591.h"
 #include <SparkFun_VEML6075_Arduino_Library.h>
 
-#include "jobsMints.h"
 #include "devicesMints.h"
-
-
-
-#define CS 10
+#include "jobsMints.h"
 
 
 // TMG39931 I2C address is 0x39(57)
@@ -39,34 +36,27 @@ Adafruit_TSL2591 tsl = Adafruit_TSL2591(2591); // pass in a number for the senso
 bool VEML6075Online;
 VEML6075 veml ;
 
-uint8_t groveLuminancePin = A0;
-uint8_t groveLightPin = A1;
-uint8_t groveUVPin = A2;
+uint8_t groveLuminancePin = A2;
+uint8_t groveLightPin = A0;
+uint8_t groveUVPin = A1;
 
 
-OPCN3NanoMints opc = OPCN3NanoMints(CS);
-bool  OPCN3Online;
-
-bool SCD30Online;
-SCD30 scd;
-
-bool MGS001Online;
-
-bool BME280Online;
-BME280 bme280; // I2C
-
-uint16_t sensingPeriod = 1000;
+uint16_t sensingPeriod =500;
 uint16_t initPeriod = 1500;
 
 unsigned long startTime;
 
 void setup() {
 
+
   delay(initPeriod);
   initializeSerialMints();
 
 
-//  Light Sensors
+
+  // SI1145.Begin();
+
+
   delay(initPeriod);
   AS7262Online = initializeAS7262Mints();
 
@@ -82,29 +72,12 @@ void setup() {
   delay(initPeriod);
   SI114XOnline      = initializeSI114XMints();
 
-
-  delay(initPeriod);
-  BME280Online = initializeBME280Mints();
-  //
-  delay(initPeriod);
-  MGS001Online =  initializeMGS001Mints();
-
-  delay(initPeriod);
-  SCD30Online = initializeSCD30Mints();
-
-  delay(initPeriod);
-  OPCN3Online =  initializeOPCN3Mints();
-
-
-
+  delay(5000);
 }
 
-
 // the loop routine runs over and over again forever:
-void loop() {
-
-
-      startTime  = millis();
+void loop(){
+    startTime  = millis();
 
 
   delay(sensingPeriod);
@@ -144,31 +117,5 @@ void loop() {
   delay(sensingPeriod);
      readAPDS9002Mints(groveLuminancePin);
 
-
-    delay(sensingPeriod);
-    if(BME280Online)
-    {
-      readBME280Mints();
-    }
-
-    delay(sensingPeriod);
-    if(MGS001Online)
-    {
-      readMGS001Mints();
-    }
-    // //
-    delay(sensingPeriod);
-    if(SCD30Online)
-    {
-      readSCD30Mints();
-    }
-
-    delay(sensingPeriod);
-    if(OPCN3Online)
-    {
-      readOPCN3Mints();
-    }
-
-    delayMints(millis() - startTime,20000);
-
+    delayMints(millis() - startTime,5000);
 }

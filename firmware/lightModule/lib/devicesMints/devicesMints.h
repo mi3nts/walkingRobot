@@ -1,13 +1,7 @@
 #ifndef DEVICES_MINTS_H
 #define DEVICES_MINTS_H
-//
-#include <Arduino.h>
-#include "OPCN3NanoMints.h"
-#include "MutichannelGasSensor.h"
 
-#include "Adafruit_Sensor.h"
-#include "Seeed_BME280.h"
-#include "SparkFun_SCD30_Arduino_Library.h"
+#include <Arduino.h>
 
 #include "Adafruit_AS726x.h"
 #include "Adafruit_TSL2591.h"
@@ -58,39 +52,6 @@ void advancedReadTSL2591Mnits(void);
 float readAPDS9002Mints(uint8_t analogpin);
 float FmultiMapAPDS9002(float val, float * _in, float * _out, uint8_t size);
     // Taken from: https://github.com/SeeedDocument/Seeed-WiKi/blob/master/docs/Grove-Luminance_Sensor.md
-
-
-extern BME280 bme280;
-bool initializeBME280Mints();
-void readBME280Mints();
-//
-bool initializeMGS001Mints();
-void readMGS001Mints();
-//
-
-extern SCD30 scd;
-bool initializeSCD30Mints();
-void readSCD30Mints();
-
-// //
-extern OPCN3NanoMints opc;
-bool initializeOPCN3Mints();
-void readOPCN3Mints();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #endif
