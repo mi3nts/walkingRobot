@@ -27,6 +27,7 @@ def main(portNum):
 
         #this will store the line
         line = []
+        s = ""
 
         while True:
             try:
@@ -34,6 +35,8 @@ def main(portNum):
                     line.append(chr(c))
                     if chr(c) == '~':
                         dataString     = (''.join(line))
+#                        print(dataString)
+#                        print(line)
                         dataStringPost = dataString.replace('~', '')
                         print("================")
                         print(dataStringPost)

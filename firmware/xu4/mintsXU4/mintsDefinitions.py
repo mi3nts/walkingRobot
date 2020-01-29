@@ -63,7 +63,7 @@ def findMacAddress():
 
 
 
-dataFolder            = "/home/teamlary/mintsData/raw"
+dataFolder            = "/home/odroid/teamlary/mintsData/raw"
 duePort               = findDuePort()
 nanoPorts             = findNanoPorts()
 ozonePort             = findOzonePort()
